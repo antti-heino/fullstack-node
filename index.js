@@ -1,8 +1,11 @@
 const http = require('http')
 const logger = require('morgan')
 const express = require('express')
+const cors = require('cors')
+
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(logger('tiny'));
 
@@ -173,6 +176,6 @@ let notes = [
 
 
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)})
