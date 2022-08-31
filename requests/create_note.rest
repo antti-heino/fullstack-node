@@ -1,0 +1,8 @@
+GET http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content":"dklsfjkjdfsl",
+    "important":"false"
+}
+###
