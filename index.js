@@ -2,6 +2,8 @@ const http = require('http')
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let persons = [
   {
     name: "Ada Lovelace",
@@ -137,7 +139,7 @@ let notes = [
   })
 
   app.post('/api/persons', (req, res) => {
-    if (!req.body.name || !req.body.number) {
+    if (!req.body.name) {
         return res.status(404).json({
             error: 'missing name'
         })
