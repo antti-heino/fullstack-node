@@ -1,12 +1,12 @@
-require("dotenv").config();
-const mongoose = require('mongoose');
+require('dotenv').config()
+const mongoose = require('mongoose')
 
-const url = process.env.MONGODB_URI;
-console.log("Connecting to: ", url);
+const url = process.env.MONGODB_URI
+console.log('Connecting to: ', url)
 
 mongoose.connect(url, { })
-    .then(() => console.log("Connected to MongoDB."))
-    .catch(error => console.log("Could not connect to MongoDB: ", error));
+  .then(() => console.log('Connected to MongoDB.'))
+  .catch(error => console.log('Could not connect to MongoDB: ', error))
 
 const personSchema = mongoose.Schema({
   name: {
@@ -23,17 +23,17 @@ const personSchema = mongoose.Schema({
       validator: number => /^\d{2,3}-\d+/.test(number)
     }
   },
-});
+})
 
-personSchema.set("toJSON", {
-    "transform": (document, returnObject) => {
-      returnObject.id = returnObject._id.toString();
-      delete returnObject._id;
-      delete returnObject.__v;
-    }
-  });
-  
-  const Person = mongoose.model("Person", personSchema);
-  Person.init().catch(e => console.log(e.message));
-  
-  module.exports = Person;
+personSchema.set('toJSON', {
+  'transform': (document, returnObject) => {
+    returnObject.id = returnObject._id.toString()
+    delete returnObject._id
+    delete returnObject.__v
+  }
+})
+
+const Person = mongoose.model('Person', personSchema)
+Person.init().catch(e => console.log(e.message))
+
+module.exports = Person
